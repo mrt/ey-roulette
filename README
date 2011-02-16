@@ -1,0 +1,30 @@
+== ROUlette
+
+1. Install rails 
+
+2. Configure mysql connection and create db
+
+3. Create Game model
+rails generate model Game
+
+4. Create migration
+add to generated migration one field:
+t.integer :number
+
+rake db:migrate
+
+5. Create controller
+rails generate controller Games
+
+and put here "  respond_to :html, :xml, :json"
+to support different output types
+
+6. Configure routes:
+  resources :games
+  root :to => "games#index"
+
+7. Create view
+
+8. Create helper to convert -1 value yo '00' string.
+
+9. run 'rackup'

@@ -1,0 +1,12 @@
+<h3>Play a Roulette</h3>
+ <p><%= link_to "spin the wheel", games_path, :method => :post %></p>
+ <% if (@new_number != nil)%>
+    <%= image_tag "#{format_roulette_num(@new_number)}.jpg", :alt => "Click to play" %>
+   <p>New Result is <%=@new_number %> !</p>
+ <% else %>
+    <%= image_tag "table.jpg", :alt => "Click to play" %>
+ <% end%>
+<h3>Last 10 Results:</h3>
+<% @games.each do |game| %>
+ <p><%=format_roulette_num(game.number)%> - <%= time_ago_in_words(game.created_at) %> ago</p>
+<% end %>
