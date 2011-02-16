@@ -1,12 +1,49 @@
-<h3>Play a Roulette</h3>
- <p><%= link_to "spin the wheel", games_path, :method => :post %></p>
- <% if (@new_number != nil)%>
-    <%= image_tag "#{format_roulette_num(@new_number)}.jpg", :alt => "Click to play" %>
-   <p>New Result is <%=@new_number %> !</p>
- <% else %>
-    <%= image_tag "table.jpg", :alt => "Click to play" %>
- <% end%>
-<h3>Last 10 Results:</h3>
-<% @games.each do |game| %>
- <p><%=format_roulette_num(game.number)%> - <%= time_ago_in_words(game.created_at) %> ago</p>
-<% end %>
+<% if (@new_number != nil)%>
+ <table cellspacing="10">
+ <tr>
+	<td valign="top" width="250">
+		<%= image_tag "#{format_roulette_num(@new_number)}.jpg", :alt => "Click to play" %>
+ 	</td>
+	<td valign="top" width="350">
+		<h3>Engine Yard University Roulette</h3>
+		<p class="but"><%= link_to "spin the wheel", games_path, :method => :post %></p>
+	<p style="font-size:300%"><%=@new_number %> Wins!</p>
+	<p>Last 10 Spins:<br>
+		<table style="font-size:80%">
+			<% @games.each do |game| %>
+				<tr>
+				<td width="30"><%=format_roulette_num(game.number)%></td>
+				<td><span style="color:#cccccc"><%= time_ago_in_words(game.created_at) %> ago</span></td>
+				</tr>
+			<% end %>
+		</table>
+	</p>
+	</td>
+</tr>
+</table>
+
+<% else %>
+
+ <table cellspacing="10">
+ <tr>
+	<td valign="top" width="250">
+		<%= image_tag "table.jpg", :alt => "Click the spin button play" %>
+ 	</td>
+	<td valign="top" width="350">
+		<h3>Engine Yard University Roulette</h3>
+		<p class="but"><%= link_to "spin the wheel", games_path, :method => :post %></p>
+	<p style="font-size:300%">Who wins?</p>
+	<p>Last 10 Spins:<br>
+		<table style="font-size:80%">
+			<% @games.each do |game| %>
+				<tr>
+				<td width="30"><%=format_roulette_num(game.number)%></td>
+				<td><span style="color:#cccccc"><%= time_ago_in_words(game.created_at) %> ago</span></td>
+				</tr>
+			<% end %>
+		</table>
+	</p>
+	</td>
+</tr>
+</table>
+<% end%>
